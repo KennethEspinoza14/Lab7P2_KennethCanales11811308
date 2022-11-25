@@ -1,5 +1,7 @@
 package lab7p2_kennethespinoza;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Kenneth
@@ -58,7 +60,11 @@ public class jugador {
     }
 
     public void setDorsal(int dorsal) {
-        this.dorsal = dorsal;
+        if (dorsal > 26 || dorsal < 1) {
+            JOptionPane.showMessageDialog(null, "El numero debe ser menor que 27 y mayor a 1");
+        } else {
+            this.dorsal = dorsal;
+        }
     }
 
     public int getGoles() {
