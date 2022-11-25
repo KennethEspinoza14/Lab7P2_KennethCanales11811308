@@ -20,6 +20,9 @@ public class jugador {
     private String posición;
     private int porterias_imbatidas;
 
+    public jugador() {
+    }
+ 
     public jugador(String nombre, int dorsal, int goles, int asistencias, int partidos_jugados, int tarjetas_amarillas, int tarjetas_rojas, int faltas_cometidas, int faltas_recibidas, String posición) {
         this.nombre = nombre;
         this.dorsal = dorsal;
