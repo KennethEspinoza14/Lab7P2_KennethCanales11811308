@@ -53,6 +53,8 @@ public class mundial extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtab_equipos = new javax.swing.JTable();
         jTabbedPane10 = new javax.swing.JTabbedPane();
         jPanel10 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -88,6 +90,13 @@ public class mundial extends javax.swing.JFrame {
         tiros_equipoLoc = new javax.swing.JTextField();
         tiros_equipoVis = new javax.swing.JTextField();
         jb_crear_partido = new javax.swing.JButton();
+        jPanel14 = new javax.swing.JPanel();
+        Selecciones_grupo = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jPanel13 = new javax.swing.JPanel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Bienvenido ");
@@ -225,59 +234,78 @@ public class mundial extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGap(0, 711, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
 
-        ver_encuentros.addTab("tab1", jPanel2);
+        ver_encuentros.addTab("Equipos", jPanel2);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGap(0, 711, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
 
-        ver_encuentros.addTab("tab2", jPanel11);
+        ver_encuentros.addTab("Tabla de goleadores", jPanel11);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGap(0, 711, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
 
         ver_encuentros.addTab("tab3", jPanel12);
+
+        jtab_equipos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jtab_equipos);
 
         javax.swing.GroupLayout jd_verEncuentrosLayout = new javax.swing.GroupLayout(jd_verEncuentros.getContentPane());
         jd_verEncuentros.getContentPane().setLayout(jd_verEncuentrosLayout);
         jd_verEncuentrosLayout.setHorizontalGroup(
             jd_verEncuentrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_verEncuentrosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(265, Short.MAX_VALUE))
             .addGroup(jd_verEncuentrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jd_verEncuentrosLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(ver_encuentros, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addComponent(ver_encuentros)
                     .addContainerGap()))
         );
         jd_verEncuentrosLayout.setVerticalGroup(
             jd_verEncuentrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_verEncuentrosLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(246, Short.MAX_VALUE))
             .addGroup(jd_verEncuentrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jd_verEncuentrosLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(ver_encuentros, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                    .addComponent(ver_encuentros)
                     .addContainerGap()))
         );
 
@@ -324,12 +352,6 @@ public class mundial extends javax.swing.JFrame {
         jTabbedPane10.addTab("Agregar selección", jPanel10);
 
         jLabel15.setText("Selección a la que pertenece");
-
-        cb_equipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_equipoActionPerformed(evt);
-            }
-        });
 
         jLabel16.setText("Nombre");
 
@@ -506,11 +528,68 @@ public class mundial extends javax.swing.JFrame {
 
         jTabbedPane10.addTab("Crear/Editar Partido", jPanel1);
 
+        jButton3.setText("AGREGAR GRUPO 1");
+
+        jButton4.setText("AGREGAR GRUPO 2");
+
+        jButton5.setText("AGREGAR GRUPO 3");
+
+        jButton6.setText("AGREGAR GRUPO 4");
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton6)
+                    .addComponent(jButton3)
+                    .addComponent(jButton5)
+                    .addComponent(jButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addContainerGap(167, Short.MAX_VALUE)
+                .addComponent(Selecciones_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(163, 163, 163))
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(Selecciones_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jButton3)
+                .addGap(27, 27, 27)
+                .addComponent(jButton4)
+                .addGap(26, 26, 26)
+                .addComponent(jButton5)
+                .addGap(27, 27, 27)
+                .addComponent(jButton6)
+                .addContainerGap(125, Short.MAX_VALUE))
+        );
+
+        jTabbedPane10.addTab("Crear Grupos", jPanel14);
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(357, Short.MAX_VALUE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -519,7 +598,10 @@ public class mundial extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 438, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(332, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -663,16 +745,18 @@ public class mundial extends javax.swing.JFrame {
         }//FIN IF
     }
     
+    
     private void crear_seleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_seleccionActionPerformed
        
         cargar_archivo_seleccion();
         String nombre;
         nombre = jt_nombre_seleccion.getText();
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_equipo.getModel();
+        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) Selecciones_grupo.getModel();
         
-        
-        
+        modelo2.addElement(nombre);
         modelo.addElement(nombre);
+        Selecciones_grupo.setModel(modelo2);
         cb_equipo.setModel(modelo);
         equipos.add(new seleccion(nombre, 0, 0, 0, 0, 0, 0, 0));
         
@@ -687,11 +771,6 @@ public class mundial extends javax.swing.JFrame {
                     "Equipo agregado exitosamente");
         
     }//GEN-LAST:event_crear_seleccionActionPerformed
-
-    
-    private void cb_equipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_equipoActionPerformed
-        
-    }//GEN-LAST:event_cb_equipoActionPerformed
 
     private void jb_agregarjugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarjugadorActionPerformed
 
@@ -809,6 +888,7 @@ public class mundial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Selecciones_grupo;
     private javax.swing.JComboBox<String> cb_equipo;
     private javax.swing.JComboBox<String> cb_equipoLoc;
     private javax.swing.JComboBox<String> cb_equipoVis;
@@ -821,6 +901,10 @@ public class mundial extends javax.swing.JFrame {
     private javax.swing.JTextField goles_equipoVis;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -844,6 +928,8 @@ public class mundial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -852,6 +938,7 @@ public class mundial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane10;
     private javax.swing.JTabbedPane jTabbedPane2;
@@ -870,6 +957,7 @@ public class mundial extends javax.swing.JFrame {
     private javax.swing.JTextField jt_nombre_reg;
     private javax.swing.JTextField jt_nombre_seleccion;
     private javax.swing.JTextField jt_user;
+    private javax.swing.JTable jtab_equipos;
     private javax.swing.JPasswordField pf_pass;
     private javax.swing.JPasswordField pf_pass_reg;
     private javax.swing.JTextField pos_equipoLoc;
