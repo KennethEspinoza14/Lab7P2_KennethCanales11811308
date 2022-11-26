@@ -444,6 +444,11 @@ public class mundial extends javax.swing.JFrame {
         jLabel14.setText("Tiros");
 
         jb_crear_partido.setText("AGREGAR AL SISTEMA");
+        jb_crear_partido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_crear_partidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -529,6 +534,11 @@ public class mundial extends javax.swing.JFrame {
         jTabbedPane10.addTab("Crear/Editar Partido", jPanel1);
 
         jButton3.setText("AGREGAR GRUPO 1");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("AGREGAR GRUPO 2");
 
@@ -753,11 +763,20 @@ public class mundial extends javax.swing.JFrame {
         nombre = jt_nombre_seleccion.getText();
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_equipo.getModel();
         DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) Selecciones_grupo.getModel();
+        DefaultComboBoxModel modelo3 = (DefaultComboBoxModel) cb_equipoLoc.getModel();
+        DefaultComboBoxModel modelo4 = (DefaultComboBoxModel) cb_equipoVis.getModel();
+
         
         modelo2.addElement(nombre);
         modelo.addElement(nombre);
+        modelo3.addElement(nombre);
+        modelo4.addElement(nombre);
+
+        
         Selecciones_grupo.setModel(modelo2);
         cb_equipo.setModel(modelo);
+        cb_equipoLoc.setModel(modelo3);
+        cb_equipoVis.setModel(modelo4);
         equipos.add(new seleccion(nombre, 0, 0, 0, 0, 0, 0, 0));
         
         System.out.println(equipos);
@@ -795,6 +814,28 @@ public class mundial extends javax.swing.JFrame {
                     "Jugador agregado exitosamente");
         
     }//GEN-LAST:event_jb_agregarjugadorActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+            
+        int posl, posv, goll, golv, fl, fv, tl, tv;
+        
+        posl = Integer.parseInt(pos_equipoLoc.getText());       
+        posv = Integer.parseInt(pos_equipoVis.getText());
+        goll = Integer.parseInt(gol_equipoLoc.getText());
+        golv = Integer.parseInt(goles_equipoVis.getText());
+        fl = Integer.parseInt(faltas_equipoLoc.getText());
+        fv = Integer.parseInt(faltas_equipoVis.getText());
+        tl = Integer.parseInt(tiros_equipoLoc.getText());
+        tv = Integer.parseInt(tiros_equipoVis.getText());
+
+        JOptionPane.showMessageDialog(this,
+                    "Jugador agregado exitosamente");
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jb_crear_partidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crear_partidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_crear_partidoActionPerformed
 
      private void aparecer_login() {
         jd_login.setModal(true);
