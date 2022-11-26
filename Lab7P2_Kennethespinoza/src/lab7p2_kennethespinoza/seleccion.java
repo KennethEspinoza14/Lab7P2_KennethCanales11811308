@@ -18,6 +18,13 @@ public class seleccion {
     private int diferencia_goles;
     ArrayList <jugador> jugadores = new ArrayList();
 
+    public seleccion() {
+    }
+
+    public seleccion(String nombre) {
+        this.nombre = nombre;
+    }
+
     public seleccion(String nombre, int partidos_jug, int partidos_ganados, int partidos_perdidos, int partidos_empatados, int goles_favor, int goles_enContra, int diferencia_goles) {
         this.nombre = nombre;
         this.partidos_jug = partidos_jug;

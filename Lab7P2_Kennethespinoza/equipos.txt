@@ -1,1 +1,6 @@
-holanda|0|0|0|0|0|0|0|
+colombia|0|0|0|0|0|0|0|
+espinoza|13|0|0|Portero|0|0|0|0|0|jugador{nombre=espinoza, dorsal=13, goles=0, asistencias=0, partidos_jugados=0, tarjetas_amarillas=0, tarjetas_rojas=0, faltas_cometidas=0, faltas_recibidas=0, posición=Portero, porterias_imbatidas=0}
+carlos|14|0|0|Portero|0|0|0|0|0|jugador{nombre=carlos, dorsal=14, goles=0, asistencias=0, partidos_jugados=0, tarjetas_amarillas=0, tarjetas_rojas=0, faltas_cometidas=0, faltas_recibidas=0, posición=Portero, porterias_imbatidas=0}
+españa|0|0|0|0|0|0|0|seleccion{nombre=españa, partidos_jug=0, partidos_ganados=0, partidos_perdidos=0, partidos_empatados=0, goles_favor=0, goles_enContra=0, diferencia_goles=0, jugadores=[]}|
+martes|15|0|0|Delantero|0|0|0|0|0|jugador{nombre=martes, dorsal=15, goles=0, asistencias=0, partidos_jugados=0, tarjetas_amarillas=0, tarjetas_rojas=0, faltas_cometidas=0, faltas_recibidas=0, posición=Delantero, porterias_imbatidas=0}
+arge|0|0|0|0|0|0|0|seleccion{nombre=arge, partidos_jug=0, partidos_ganados=0, partidos_perdidos=0, partidos_empatados=0, goles_favor=0, goles_enContra=0, diferencia_goles=0, jugadores=[]}|

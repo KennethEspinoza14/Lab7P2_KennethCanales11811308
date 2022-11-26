@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,7 +24,6 @@ public class mundial extends javax.swing.JFrame {
     public mundial() {
         initComponents();
         in.cargarArchivo();
-        System.out.print(in.getListausuarios());
         this.setVisible(false);
         aparecer_login();
     }
@@ -65,6 +67,7 @@ public class mundial extends javax.swing.JFrame {
         jt_nombre_jugador = new javax.swing.JTextField();
         jt_dorsal = new javax.swing.JTextField();
         cb_posicion = new javax.swing.JComboBox<>();
+        jb_agregarjugador = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         cb_grupo = new javax.swing.JComboBox<>();
@@ -322,7 +325,11 @@ public class mundial extends javax.swing.JFrame {
 
         jLabel15.setText("Selección a la que pertenece");
 
-        cb_equipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_equipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_equipoActionPerformed(evt);
+            }
+        });
 
         jLabel16.setText("Nombre");
 
@@ -330,7 +337,14 @@ public class mundial extends javax.swing.JFrame {
 
         jLabel18.setText("Posición");
 
-        cb_posicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_posicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Portero", "Defensa", "Mediocampista", "Delantero", " " }));
+
+        jb_agregarjugador.setText("Agregar Jugador");
+        jb_agregarjugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_agregarjugadorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -344,7 +358,7 @@ public class mundial extends javax.swing.JFrame {
                             .addComponent(jLabel16)
                             .addComponent(jLabel18)
                             .addComponent(jLabel17))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cb_posicion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jt_dorsal)
@@ -356,6 +370,10 @@ public class mundial extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(cb_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(195, 195, 195)
+                .addComponent(jb_agregarjugador)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,7 +394,9 @@ public class mundial extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(cb_posicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(jb_agregarjugador)
+                .addGap(92, 92, 92))
         );
 
         jTabbedPane10.addTab("Agregar Jugador", jPanel4);
@@ -542,15 +562,66 @@ public class mundial extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void escribir_archivo_jugador() throws IOException{
+        File archivo = null;
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+      
+        try {
+            archivo = new File("./equipos.txt");
+            fw = new FileWriter(archivo, true);
+            bw = new BufferedWriter(fw);
+            for (jugador t : s.getJugadores() ) {
+                bw.write(t.getNombre()+"|");
+                bw.write(t.getDorsal()+"|");
+                bw.write(t.getGoles()+"|");
+                bw.write(t.getAsistencias()+"|");
+                bw.write(t.getPosición()+"|");
+                bw.write(t.getPartidos_jugados()+"|");
+                bw.write(t.getFaltas_cometidas()+"|");
+                bw.write(t.getFaltas_recibidas()+"|");
+                bw.write(t.getTarjetas_amarillas()+"|");
+                bw.write(t.getTarjetas_rojas()+"|");
+                bw.newLine();
+            }
+            bw.flush();
+        } catch (Exception e) {
+
+        }
+        bw.close();
+        fw.close();
+    }
+    
+    public void cargar_archivo_jugador(){
+         Scanner sc = null;
+        File archivo = null;
+
+        equipos = new ArrayList();
+        archivo = new File("./equipos.txt");
+
+        if (archivo.exists()) {
+            try {
+                sc = new Scanner(archivo);
+                sc.useDelimiter(";");
+                while (sc.hasNext()) {
+                    s.getJugadores().add(new jugador(sc.next(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.nextInt(), sc.next()));
+                }
+            } catch (Exception ex) {
+            }
+            sc.close();
+        }//FIN IF
+    }
+    
+    
     public void escribir_archivo_seleccion() throws IOException{
-         File archivo = null;
+        File archivo = null;
         FileWriter fw = null;
         BufferedWriter bw = null;
 
         
         try {
             archivo = new File("./equipos.txt");
-            fw = new FileWriter(archivo, false);
+            fw = new FileWriter(archivo, true);
             bw = new BufferedWriter(fw);
             for (seleccion t : equipos) {
                 bw.write(t.getNombre() + "|");
@@ -561,6 +632,7 @@ public class mundial extends javax.swing.JFrame {
                 bw.write(t.getPartidos_ganados()+"|");
                 bw.write(t.getPartidos_empatados()+"|");
                 bw.write(t.getPartidos_perdidos()+"|");
+                bw.write(t.toString()+"|");
                 bw.newLine();
             }
             bw.flush();
@@ -595,9 +667,13 @@ public class mundial extends javax.swing.JFrame {
        
         cargar_archivo_seleccion();
         String nombre;
-        
         nombre = jt_nombre_seleccion.getText();
-              
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_equipo.getModel();
+        
+        
+        
+        modelo.addElement(nombre);
+        cb_equipo.setModel(modelo);
         equipos.add(new seleccion(nombre, 0, 0, 0, 0, 0, 0, 0));
         
         System.out.println(equipos);
@@ -611,6 +687,35 @@ public class mundial extends javax.swing.JFrame {
                     "Equipo agregado exitosamente");
         
     }//GEN-LAST:event_crear_seleccionActionPerformed
+
+    
+    private void cb_equipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_equipoActionPerformed
+        
+    }//GEN-LAST:event_cb_equipoActionPerformed
+
+    private void jb_agregarjugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_agregarjugadorActionPerformed
+
+        cargar_archivo_jugador();
+        
+        String nombre, posicion = "";
+        int dorsal;
+        
+        nombre = jt_nombre_jugador.getText();
+        dorsal = Integer.parseInt(jt_dorsal.getText());
+        s.getJugadores().add(new jugador(nombre, dorsal, 0, 0, 0, 0, 0, 0, 0, (String)cb_posicion.getSelectedItem()));
+        
+         System.out.println(s.getJugadores());
+        try {
+            escribir_archivo_jugador();
+        } catch (IOException ex) {
+
+        }
+        jt_nombre_jugador.setText("");
+        jt_dorsal.setText("");
+        JOptionPane.showMessageDialog(this,
+                    "Jugador agregado exitosamente");
+        
+    }//GEN-LAST:event_jb_agregarjugadorActionPerformed
 
      private void aparecer_login() {
         jd_login.setModal(true);
@@ -754,6 +859,7 @@ public class mundial extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane7;
     private javax.swing.JTabbedPane jTabbedPane8;
     private javax.swing.JTabbedPane jTabbedPane9;
+    private javax.swing.JButton jb_agregarjugador;
     private javax.swing.JButton jb_crear_partido;
     private javax.swing.JButton jb_registro;
     private javax.swing.JDialog jd_login;
@@ -775,7 +881,9 @@ public class mundial extends javax.swing.JFrame {
 
      static archivos_usuarios in
             = new archivos_usuarios("./usuarios.txt");
-
+     
+    seleccion s = new seleccion();
+    
     static admin a = new admin("admin", "admin", 0, false);
     
     ArrayList <seleccion> equipos = new ArrayList();
